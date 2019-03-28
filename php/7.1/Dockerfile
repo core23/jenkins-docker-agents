@@ -19,7 +19,7 @@ RUN apt-get update && \
     php7.1-gd php7.1-intl php7.1-bcmath php7.1-imagick \
     php7.1-json php7.1-soap php7.1-curl php7.1-mysqlnd \
     php7.1-xdebug php7.1-intl \
-    php7.1-mbstring php7.1-xdebug php7.1-zip \
+    php7.1-mbstring php7.1-zip \
     && apt-get clean -y
 
 # Create a Jenkins "HOME" for composer files.
