@@ -18,12 +18,8 @@ matrix:
            TAG=7.2
     - env: AGENT=php
            TAG=7.3
-
-before_install:
-  - cd "${AGENT}/${TAG}"
-
 script:
-  - docker build --tag="core23/jenkins-${AGENT}-agent:${TAG}" .
+  - docker build --tag="core23/jenkins-${AGENT}-agent:${TAG}" ${AGENT}/${TAG}
 
 after_script:
   - docker images

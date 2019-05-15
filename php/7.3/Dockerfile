@@ -29,9 +29,14 @@ RUN mkdir -p /home/jenkins/composer \
 # Install composer.
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin/  --filename=composer
 
+# Install nodejs / npm
+RUN curl -sL https://deb.nodesource.com/setup_12.x | bash - \
+    && apt-get install -y nodejs npm \
+    && apt-get clean -y
+
 # Add execution rights to php
-USER root
 RUN chmod +x /usr/bin/php*
+
 USER jenkins
 
 ENTRYPOINT ["jenkins-slave"]
