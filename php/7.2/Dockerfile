@@ -34,6 +34,39 @@ RUN apt-get update && \
     php7.2-mbstring php7.2-zip \
     && apt-get clean -y
 
+# OPcache
+RUN docker-php-ext-install \
+        opcache \
+    && docker-php-ext-enable \
+        opcache
+
+# GD extension
+RUN apt-get install -y \
+        libfreetype6-dev \
+        libjpeg62-turbo-dev \
+        libpng-dev \
+    && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
+    && docker-php-ext-install gd
+
+# Image Magic extension
+RUN apt-get install -y \
+        imagemagick \
+        libmagickwand-dev \
+    && pecl install imagick \
+    && docker-php-ext-enable imagick
+
+# Redis extension
+RUN pecl install -o -f redis \
+    && rm -rf /tmp/pear \
+    && docker-php-ext-enable redis
+
+# Mongo extension
+RUN apt-get install -y \
+            libssl-dev \
+    && pecl install -o -f mongodb \
+    && rm -rf /tmp/pear \
+    && docker-php-ext-enable mongodb
+
 # Install composer.
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin/  --filename=composer
 
