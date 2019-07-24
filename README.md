@@ -1,7 +1,7 @@
 Jenkins Agents
 ==============
 
-[![Build Status](http://img.shields.io/travis/core23/jenkins-docker-agents.svg)](https://travis-ci.org/core23/jenkins-docker-agents-php)
+[![Build Status](http://img.shields.io/travis/core23/jenkins-docker-agents.svg)](https://travis-ci.org/core23/jenkins-docker-agents)
 
 PHP Agents
 ----------
