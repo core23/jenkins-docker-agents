@@ -18,6 +18,8 @@ matrix:
            TAG=7.2
     - env: AGENT=php
            TAG=7.3
+    - env: AGENT=php
+           TAG=7.4
 script:
   - docker build --tag="core23/jenkins-${AGENT}-agent:${TAG}" ${AGENT}/${TAG}
 
