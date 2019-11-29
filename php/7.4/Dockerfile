@@ -15,7 +15,7 @@ RUN wget -q https://packages.sury.org/php/apt.gpg -O- | apt-key add - \
 
 # Install nodejs / npm
 RUN curl -sL https://deb.nodesource.com/setup_13.x | bash - \
-    && apt-get install -y nodejs npm
+    && apt-get install -y nodejs
 
 # yarn
 RUN apt-get install -y yarn \
