@@ -27,11 +27,8 @@ RUN apt-get update && \
     php7.4-mbstring php7.4-zip \
     && apt-get clean -y
 
-# Install composer.
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin/  --filename=composer
-
-# Add execution rights to php
-RUN chmod +x /usr/bin/php*
+# Get Composer
+COPY --from=composer /usr/bin/composer /usr/local/bin/composer
 
 USER jenkins
 
