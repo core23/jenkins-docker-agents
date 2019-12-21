@@ -21,7 +21,7 @@ matrix:
     - env: AGENT=php
            TAG=7.4
 script:
-  - docker build --tag="core23/jenkins-${AGENT}-agent:${TAG}" ${AGENT}/${TAG}
+  - make ${AGENT}-${TAG}
 
 after_script:
   - docker images
