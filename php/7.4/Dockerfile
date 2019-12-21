@@ -1,4 +1,4 @@
-FROM jenkinsci/jnlp-slave:latest
+FROM jenkins/jnlp-slave:latest
 
 MAINTAINER Christian Gripp <mail@core23.de>
 
