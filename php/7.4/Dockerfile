@@ -23,7 +23,7 @@ RUN apt-get update && \
     apt-get install -y php7.4 php7.4-cli php7.4-xsl \
     php7.4-gd php7.4-intl php7.4-bcmath php7.4-imagick \
     php7.4-json php7.4-soap php7.4-curl php7.4-mysqlnd \
-    php7.2-pdo \
+    php7.4-pdo \
     php7.4-xdebug php7.4-intl \
     php7.4-mbstring php7.4-zip \
     && apt-get clean -y

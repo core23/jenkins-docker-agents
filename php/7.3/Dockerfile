@@ -23,7 +23,7 @@ RUN apt-get update && \
     apt-get install -y php7.3 php7.3-cli php7.3-xsl \
     php7.3-gd php7.3-intl php7.3-bcmath php7.3-imagick \
     php7.3-json php7.3-soap php7.3-curl php7.3-mysqlnd \
-    php7.2-pdo \
+    php7.3-pdo \
     php7.3-xdebug php7.3-intl \
     php7.3-mbstring php7.3-zip \
     && apt-get clean -y
