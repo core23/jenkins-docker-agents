@@ -16,7 +16,7 @@ RUN wget -q https://packages.sury.org/php/apt.gpg -O- | apt-key add - \
 # NPM tools
 RUN curl -sL https://deb.nodesource.com/setup_13.x | bash - \
     && apt-get install -y nodejs \
-    && npm install npm --global
+    && npm install npm yarn --global
 
 # install php extensions
 RUN apt-get update && \
@@ -32,8 +32,5 @@ RUN apt-get update && \
 COPY --from=composer /usr/bin/composer /usr/local/bin/composer
 
 USER jenkins
-
-RUN npm config set prefix "/home/jenkins" \
-    && npm install yarn --global
 
 ENTRYPOINT ["jenkins-slave"]
