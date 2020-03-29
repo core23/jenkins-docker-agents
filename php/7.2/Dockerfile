@@ -26,6 +26,7 @@ RUN apt-get update && \
     php7.2-pdo php7.2-sqlite \
     php7.2-xdebug php7.2-intl \
     php7.2-mbstring php7.2-zip \
+    php7.2-xsl \
     && apt-get clean -y
 
 # Get Composer
