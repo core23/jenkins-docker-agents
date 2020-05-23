@@ -11,7 +11,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     curl git ant
 
 RUN wget -q https://packages.sury.org/php/apt.gpg -O- | apt-key add - \
-    && echo "deb https://packages.sury.org/php/ stretch main" | tee /etc/apt/sources.list.d/php.list
+    && echo "deb https://packages.sury.org/php/ buster main" | tee /etc/apt/sources.list.d/php.list
 
 # NPM tools
 RUN curl -sL https://deb.nodesource.com/setup_13.x | bash - \
@@ -20,13 +20,16 @@ RUN curl -sL https://deb.nodesource.com/setup_13.x | bash - \
 
 # install php extensions
 RUN apt-get update && \
-    apt-get install -y php7.4 php7.4-cli php7.4-xsl \
-    php7.4-gd php7.4-intl php7.4-bcmath php7.4-imagick \
-    php7.4-json php7.4-soap php7.4-curl php7.4-mysqlnd \
-    php7.4-pdo php7.4-sqlite \
-    php7.4-xdebug php7.4-intl \
-    php7.4-mbstring php7.4-zip \
-    php7.4-xsl \
+    apt-get install -y \
+        php7.4 php7.4-cli php7.4-xsl \
+        php7.4-gd php7.4-intl php7.4-bcmath php7.4-imagick \
+        php7.4-json php7.4-soap php7.4-curl php7.4-mysqlnd \
+        php7.4-pdo php7.4-sqlite \
+        php7.4-xdebug php7.4-intl \
+        php7.4-mbstring php7.4-zip \
+        php7.4-mongodb \
+        php7.4-redis \
+        php7.4-xsl \
     && apt-get clean -y
 
 # Get Composer
