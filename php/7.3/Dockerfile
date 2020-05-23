@@ -26,6 +26,8 @@ RUN apt-get update && \
     php7.3-pdo php7.3-sqlite \
     php7.3-xdebug php7.3-intl \
     php7.3-mbstring php7.3-zip \
+    php7.3-mongodb \
+    php7.3-redis \
     php7.3-xsl \
     && apt-get clean -y
 
