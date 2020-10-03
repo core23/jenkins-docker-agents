@@ -1,6 +1,8 @@
 on:
   pull_request:
-    push:
+    types: [ opened, synchronize, reopened, labeled, unlabeled ]
+  push:
+    branches:
       - "**"
     tags:
       - "**"
