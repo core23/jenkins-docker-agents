@@ -11,15 +11,21 @@ name: "Continuous Integration"
 
 jobs:
   test:
-    name: "Docker Compose"
+    name: "Test"
 
     runs-on: "ubuntu-latest"
 
+    strategy:
+      matrix:
+        image:
+          - agent-php71
+          - agent-php72
+          - agent-php73
+          - agent-php74
+
     steps:
-      - uses: "actions/checkout@v1"
+      - name: "Checkout"
+        uses: "actions/checkout@v2.3.3"
 
-      - name: "Build the stack"
-        run: "docker-compose build"
-
-      - name: "Show images"
-        run: "docker-compose images"
+      - name: "Build"
+        run: "docker-compose build ${{ matrix.image }}"

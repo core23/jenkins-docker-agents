@@ -2,6 +2,7 @@ version: '2'
 
 services:
   agent-php71:
+    build: php/7.1
     image: core23/jenkins-php-agent:7.1
     volumes:
       - /volume1/docker/jenkins-agent-php71:/home/jenkins/.composer
@@ -10,6 +11,7 @@ services:
       - JENKINS_SECRET=bd5e1abe126ffce36439b1ea03c4b683b0da6ecc044a83d35f83abc35e2ef955
 
   agent-php72:
+    build: php/7.2
     image: core23/jenkins-php-agent:7.2
     volumes:
       - /volume1/docker/jenkins-agent-php72:/home/jenkins/.composer
@@ -18,6 +20,7 @@ services:
       - JENKINS_SECRET=bd5e1abe126ffce36439b1ea03c4b683b0da6ecc044a83d35f83abc35e2ef955
 
   agent-php73:
+    build: php/7.3
     image: core23/jenkins-php-agent:7.3
     volumes:
       - /volume1/docker/jenkins-agent-php73:/home/jenkins/.composer
@@ -26,6 +29,7 @@ services:
       - JENKINS_SECRET=bd5e1abe126ffce36439b1ea03c4b683b0da6ecc044a83d35f83abc35e2ef955
 
   agent-php74:
+    build: php/7.4
     image: core23/jenkins-php-agent:7.4
     volumes:
       - /volume1/docker/jenkins-agent-php74:/home/jenkins/.composer
