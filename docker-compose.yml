@@ -36,3 +36,12 @@ services:
     entrypoint:
       - JENKINS_URL=http://localhost:8080
       - JENKINS_SECRET=bd5e1abe126ffce36439b1ea03c4b683b0da6ecc044a83d35f83abc35e2ef955
+
+  agent-php80:
+    build: php/8.0
+    image: core23/jenkins-php-agent:8.0
+    volumes:
+      - /volume1/docker/jenkins-agent-php80:/home/jenkins/.composer
+    entrypoint:
+      - JENKINS_URL=http://localhost:8080
+      - JENKINS_SECRET=bd5e1abe126ffce36439b1ea03c4b683b0da6ecc044a83d35f83abc35e2ef955
