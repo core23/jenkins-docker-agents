@@ -1,4 +1,4 @@
-name: Docker
+name: Build and push containers
 
 on:
   schedule:
@@ -11,15 +11,19 @@ env:
   IMAGE_NAME: ${{ github.repository }}
 
 jobs:
-  build:
+  release-container:
+    name: "Push Docker image to GitHub Packages"
 
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: write
+    runs-on: "ubuntu-latest"
+
+    strategy:
+      matrix:
+        php-version:
+          - "7.4"
+          - "8.0"
 
     steps:
-      - name: "Checkout repository"
+      - name: "Checkout"
         uses: "actions/checkout@v2"
 
       - name: "Setup QEMU"
@@ -39,7 +43,7 @@ jobs:
         uses: "docker/build-push-action@v2"
         with:
           context: .
-          file: ./php/8.0/Dockerfile
+          file: ./php/${{ matrix.php-version }}/Dockerfile
           platforms: linux/amd64
           push: true
-          tags: "8.0, 8, latest"
+          tags: "core23/jenkins-php-agent:${{ matrix.php-version }}"
