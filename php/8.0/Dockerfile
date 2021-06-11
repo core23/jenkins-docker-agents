@@ -16,7 +16,7 @@ RUN wget -q https://packages.sury.org/php/apt.gpg -O- | apt-key add - \
 # NPM tools
 RUN curl -sL https://deb.nodesource.com/setup_14.x | bash - \
     && apt-get install -y nodejs \
-    && npm install npm yarn --global
+    && npm install -g yarn --unsafe-perm
 
 # install php extensions
 RUN apt-get update && \
