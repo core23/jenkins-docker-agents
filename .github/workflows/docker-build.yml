@@ -1,0 +1,27 @@
+name: "Simulate Docker Build"
+
+on:
+  schedule:
+    - cron: '0 2 * * *'
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  docker-build:
+    name: "Simulate Docker Build"
+
+    runs-on: "ubuntu-latest"
+
+    strategy:
+      matrix:
+        php-version:
+          - "7.4"
+          - "8.0"
+
+    steps:
+      - name: "Checkout"
+        uses: "actions/checkout@v2"
+
+      - name: "Build"
+        run: "DOCKER_BUILDKIT=1 docker build php/${{ matrix.php-version }}"
