@@ -8,15 +8,15 @@ USER root
 RUN apt-get update && apt-get install -y --no-install-recommends \
     apt-transport-https \
     apt-utils sendmail libpng-dev zlib1g-dev \
-    curl git ant
-
-RUN wget -q https://packages.sury.org/php/apt.gpg -O- | apt-key add - \
-    && echo "deb https://packages.sury.org/php/ buster main" | tee /etc/apt/sources.list.d/php.list
+    gnupg2 curl git ant wget
 
 # NPM tools
 RUN curl -sL https://deb.nodesource.com/setup_14.x | bash - \
     && apt-get install -y nodejs \
     && npm install -g yarn --unsafe-perm
+
+RUN wget -q https://packages.sury.org/php/apt.gpg -O- | apt-key add - \
+    && echo "deb https://packages.sury.org/php/ buster main" | tee /etc/apt/sources.list.d/php.list
 
 # install php extensions
 RUN apt-get update && \
