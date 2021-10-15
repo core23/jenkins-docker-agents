@@ -18,9 +18,6 @@ jobs:
     strategy:
       matrix:
         image:
-          - agent-php71
-          - agent-php72
-          - agent-php73
           - agent-php74
           - agent-php80
 
