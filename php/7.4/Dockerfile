@@ -30,6 +30,7 @@ RUN apt-get update && \
         php7.4-mongodb \
         php7.4-redis \
         php7.4-xsl \
+        php7.4-pcov \
     && apt-get clean -y
 
 # Get Composer
