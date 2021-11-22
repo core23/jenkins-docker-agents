@@ -30,6 +30,7 @@ RUN apt-get update && \
         php8.1-mongodb \
         php8.1-redis \
         php8.1-xsl \
+        php8.1-pcov \
     && apt-get clean -y
 
 # Get Composer
