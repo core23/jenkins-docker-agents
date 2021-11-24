@@ -9,7 +9,7 @@ PHP Agents
 If you have a jenkins server running (on serverhost:8080), you can connect the agent via the following command.
 
 ```bash
-docker run -d --restart always -v ~/.composer:/home/jenkins/.composer core23/jenkins-php-agent:7.3 -url http://serverhost:8080 SECRET AGENT_NAME
+docker run -d --restart always -v ~/.composer:/home/jenkins/.composer ghcr.io/core23/jenkins-php-agent:8.0 -url http://serverhost:8080 SECRET AGENT_NAME
 ```
 
 FAQ
