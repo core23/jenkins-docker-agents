@@ -34,9 +34,7 @@ RUN apt-get update && \
     && apt-get clean -y
 
 # Get Composer
-COPY --from=composer:2 /usr/bin/composer /usr/local/bin/composer2
-COPY --from=composer:1 /usr/bin/composer /usr/local/bin/composer1
-COPY --from=composer   /usr/bin/composer /usr/local/bin/composer
+COPY --from=composer /usr/bin/composer /usr/local/bin/composer
 
 USER jenkins
 
