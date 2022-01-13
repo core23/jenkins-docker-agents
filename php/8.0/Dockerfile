@@ -1,4 +1,4 @@
-FROM jenkins/jnlp-slave:latest
+FROM jenkins/inbound-agent
 
 MAINTAINER Christian Gripp <mail@core23.de>
 
@@ -19,24 +19,33 @@ RUN wget -q https://packages.sury.org/php/apt.gpg -O- | apt-key add - \
     && echo "deb https://packages.sury.org/php/ buster main" | tee /etc/apt/sources.list.d/php.list
 
 # install php extensions
+RUN wget "http://mirrors.kernel.org/ubuntu/pool/main/libf/libffi/libffi6_3.2.1-8_$(dpkg --print-architecture).deb" && \
+    dpkg -i "libffi6_3.2.1-8_$(dpkg --print-architecture).deb"
+
 RUN apt-get update && \
     apt-get install -y \
-        php8.0 php8.0-cli php8.0-xsl \
-        php8.0-gd php8.0-intl php8.0-bcmath php8.0-imagick \
-        php8.0-soap php8.0-curl php8.0-mysqlnd \
-        php8.0-pdo php8.0-sqlite \
-        php8.0-xdebug php8.0-intl \
-        php8.0-mbstring php8.0-zip \
+        php8.0 \
+        php8.0-bcmath \
+        php8.0-cli \
+        php8.0-curl \
+        php8.0-gd \
+        php8.0-imagick \
+        php8.0-intl \
+        php8.0-mbstring \
         php8.0-mongodb \
-        php8.0-redis \
-        php8.0-xsl \
+        php8.0-mysqlnd \
         php8.0-pcov \
+        php8.0-pdo \
+        php8.0-redis \
+        php8.0-soap  \
+        php8.0-sqlite \
+        php8.0-xdebug \
+        php8.0-xsl \
+        php8.0-zip \
     && apt-get clean -y
 
 # Get Composer
-COPY --from=composer:2 /usr/bin/composer /usr/local/bin/composer2
-COPY --from=composer:1 /usr/bin/composer /usr/local/bin/composer1
-COPY --from=composer   /usr/bin/composer /usr/local/bin/composer
+COPY --from=composer /usr/bin/composer /usr/local/bin/composer
 
 USER jenkins
 

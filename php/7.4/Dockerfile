@@ -1,4 +1,4 @@
-FROM jenkins/jnlp-slave:latest
+FROM jenkins/inbound-agent
 
 MAINTAINER Christian Gripp <mail@core23.de>
 
@@ -19,24 +19,33 @@ RUN wget -q https://packages.sury.org/php/apt.gpg -O- | apt-key add - \
     && echo "deb https://packages.sury.org/php/ buster main" | tee /etc/apt/sources.list.d/php.list
 
 # install php extensions
+RUN wget "http://mirrors.kernel.org/ubuntu/pool/main/libf/libffi/libffi6_3.2.1-8_$(dpkg --print-architecture).deb" && \
+    dpkg -i "libffi6_3.2.1-8_$(dpkg --print-architecture).deb"
+
 RUN apt-get update && \
     apt-get install -y \
-        php7.4 php7.4-cli php7.4-xsl \
-        php7.4-gd php7.4-intl php7.4-bcmath php7.4-imagick \
-        php7.4-json php7.4-soap php7.4-curl php7.4-mysqlnd \
-        php7.4-pdo php7.4-sqlite \
-        php7.4-xdebug php7.4-intl \
-        php7.4-mbstring php7.4-zip \
+        php7.4 \
+        php7.4-bcmath \
+        php7.4-cli \
+        php7.4-curl \
+        php7.4-gd \
+        php7.4-imagick \
+        php7.4-intl \
+        php7.4-mbstring \
         php7.4-mongodb \
-        php7.4-redis \
-        php7.4-xsl \
+        php7.4-mysqlnd \
         php7.4-pcov \
+        php7.4-pdo \
+        php7.4-redis \
+        php7.4-soap  \
+        php7.4-sqlite \
+        php7.4-xdebug \
+        php7.4-xsl \
+        php7.4-zip \
     && apt-get clean -y
 
 # Get Composer
-COPY --from=composer:2 /usr/bin/composer /usr/local/bin/composer2
-COPY --from=composer:1 /usr/bin/composer /usr/local/bin/composer1
-COPY --from=composer   /usr/bin/composer /usr/local/bin/composer
+COPY --from=composer /usr/bin/composer /usr/local/bin/composer
 
 USER jenkins
 
