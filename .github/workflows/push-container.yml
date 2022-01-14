@@ -1,4 +1,4 @@
-name: Build and push containers
+name: "Build and push containers"
 
 on:
   schedule:
@@ -18,6 +18,10 @@ jobs:
           - "7.4"
           - "8.0"
           - "8.1"
+
+        base-image:
+          - "alpine"
+          - "debian"
 
     steps:
       - name: "Checkout"
@@ -40,7 +44,7 @@ jobs:
         uses: "docker/build-push-action@v2"
         with:
           context: .
-          file: ./php/${{ matrix.php-version }}/Dockerfile
+          file: ./php/${{ matrix.base-image }}/${{ matrix.php-version }}/Dockerfile
           platforms: linux/amd64
           push: true
-          tags: "ghcr.io/core23/jenkins-php-agent:${{ matrix.php-version }}"
+          tags: "ghcr.io/core23/jenkins-php-agent:${{ matrix.php-version }}-${{ matrix.base-image }}"
