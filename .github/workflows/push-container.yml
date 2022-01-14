@@ -41,7 +41,7 @@ jobs:
             name/app
             ghcr.io/username/app
           tags: |
-            type={{ matrix.php-version }}-${{ matrix.base-image }}
+            type=${{ matrix.php-version }}-${{ matrix.base-image }}
             {{ matrix.base-image == 'debian' ? join('type=', matrix.php-version) : '' }}
 
       - name: "Setup QEMU"
