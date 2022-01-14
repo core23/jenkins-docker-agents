@@ -41,7 +41,8 @@ jobs:
             name/app
             ghcr.io/username/app
           tags: |
-            type=raw,${{ matrix.php-version }}-${{ matrix.base-image }}
+            type=raw,value=${{ matrix.php-version }}-${{ matrix.base-image }}
+            type=raw,value=${{ matrix.php-version }},enable=${{ !startsWith(matrix.base-image, 'debian') }}
 
       - name: "Setup QEMU"
         uses: "docker/setup-qemu-action@v1"
@@ -59,8 +60,7 @@ jobs:
       - name: "Build and push"
         uses: "docker/build-push-action@v2"
         with:
-          context: .
-          file: "./php/${{ matrix.base-image }}/${{ matrix.php-version }}/Dockerfile"
+          context: "php/${{ matrix.base-image }}/${{ matrix.php-version }}"
           platforms: "linux/amd64"
           push: true
           tags: "${{ steps.meta.outputs.tags }}"
