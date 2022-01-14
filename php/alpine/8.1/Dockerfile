@@ -19,9 +19,9 @@ RUN apk add --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/testing \
         php81-exif \
         php81-fileinfo \
         php81-fpm \
-        php81-gd \
+#        php81-gd \
         php81-iconv \
-        php81-intl \
+#        php81-intl \
         php81-mbstring \
         php81-mysqli \
         php81-opcache \
@@ -30,7 +30,7 @@ RUN apk add --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/testing \
         php81-pdo_mysql \
         php81-pdo_sqlite \
         php81-pecl-imagick \
-        php81-pecl-mongodb \
+#        php81-pecl-mongodb \
         php81-pecl-pcov \
         php81-pecl-redis \
         php81-phar \

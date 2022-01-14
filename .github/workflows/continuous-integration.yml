@@ -24,6 +24,10 @@ jobs:
           - "alpine"
           - "debian"
 
+        exclude:
+          - php-version: "8.1"
+            base-image: "alpine"
+
     steps:
       - name: "Checkout"
         uses: "actions/checkout@v2"
