@@ -31,6 +31,19 @@ jobs:
       - name: "Checkout"
         uses: "actions/checkout@v2"
 
+      - name: "Docker meta"
+        id: "meta"
+        uses: "docker/metadata-action@v3"
+        with:
+          flavor: |
+            latest=false
+          images: |
+            name/app
+            ghcr.io/username/app
+          tags: |
+            type={{ matrix.php-version }}-${{ matrix.base-image }}
+            {{ matrix.base-image == 'debian' ? join('type=', matrix.php-version) : '' }}
+
       - name: "Setup QEMU"
         uses: "docker/setup-qemu-action@v1"
 
@@ -48,7 +61,8 @@ jobs:
         uses: "docker/build-push-action@v2"
         with:
           context: .
-          file: ./php/${{ matrix.base-image }}/${{ matrix.php-version }}/Dockerfile
-          platforms: linux/amd64
+          file: "./php/${{ matrix.base-image }}/${{ matrix.php-version }}/Dockerfile"
+          platforms: "linux/amd64"
           push: true
-          tags: "ghcr.io/core23/jenkins-php-agent:${{ matrix.php-version }}-${{ matrix.base-image }}"
+          tags: "${{ steps.meta.outputs.tags }}"
+          labels: "${{ steps.meta.outputs.labels }}"
