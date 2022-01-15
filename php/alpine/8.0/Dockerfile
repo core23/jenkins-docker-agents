@@ -27,6 +27,7 @@ RUN apk add --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/testing \
         php8-mysqli \
         php8-opcache \
         php8-openssl \
+        php8-pcntl \
         php8-pdo \
         php8-pdo_mysql \
         php8-pdo_sqlite \

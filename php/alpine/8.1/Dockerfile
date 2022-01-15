@@ -26,6 +26,7 @@ RUN apk add --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/testing \
         php81-mysqli \
         php81-opcache \
         php81-openssl \
+        php81-pcntl \
         php81-pdo \
         php81-pdo_mysql \
         php81-pdo_sqlite \
