@@ -26,6 +26,7 @@ RUN apk add --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/testing \
         php7-mysqli \
         php7-opcache \
         php7-openssl \
+        php7-pcntl \
         php7-pdo \
         php7-pdo_mysql \
         php7-pdo_sqlite \
@@ -34,6 +35,7 @@ RUN apk add --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/testing \
         php7-pecl-pcov \
         php7-pecl-redis \
         php7-phar \
+        php7-posix \
         php7-redis \
         php7-session \
         php7-simplexml \
