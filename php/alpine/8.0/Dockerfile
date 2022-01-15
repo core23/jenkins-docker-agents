@@ -35,6 +35,7 @@ RUN apk add --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/testing \
         php8-pecl-pcov \
         php8-pecl-redis \
         php8-phar \
+        php8-posix \
         php8-redis \
         php8-session \
         php8-simplexml \
