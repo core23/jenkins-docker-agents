@@ -19,8 +19,8 @@ RUN wget -q https://packages.sury.org/php/apt.gpg -O- | apt-key add - \
     && echo "deb https://packages.sury.org/php/ buster main" | tee /etc/apt/sources.list.d/php.list
 
 # install php extensions
-RUN wget "http://mirrors.kernel.org/ubuntu/pool/main/libf/libffi/libffi6_3.2.1-8_$(dpkg --print-architecture).deb" && \
-    dpkg -i "libffi6_3.2.1-8_$(dpkg --print-architecture).deb"
+RUN wget "http://ftp.de.debian.org/debian/pool/main/libf/libffi/libffi6_3.2.1-9_$(dpkg --print-architecture).deb" && \
+    dpkg -i "libffi6_3.2.1-9_$(dpkg --print-architecture).deb"
 
 RUN apt-get update && \
     apt-get install -y \
