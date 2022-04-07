@@ -25,8 +25,6 @@ jobs:
           - "debian"
 
         exclude:
-          - php-version: "8.1"
-            base-image: "alpine"
           - php-version: "7.4"
             base-image: "debian"
 
