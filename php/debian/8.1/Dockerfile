@@ -37,7 +37,7 @@ RUN apt-get update && \
         php8.1-pcov \
         php8.1-pdo \
         php8.1-redis \
-        php8.1-soap  \
+        php8.1-soap \
         php8.1-sqlite \
         php8.1-xdebug \
         php8.1-xsl \
