@@ -38,7 +38,7 @@ RUN apt-get update && \
         php7.4-pdo \
         php7.4-redis \
         php7.4-soap \
-        php7.4-sqlite \
+#        php7.4-sqlite \
         php7.4-xdebug \
         php7.4-xsl \
         php7.4-zip \
