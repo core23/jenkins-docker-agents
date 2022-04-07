@@ -40,6 +40,7 @@ RUN apk add --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/testing \
         php81-session \
         php81-simplexml \
         php81-soap \
+        php81-sodium \
         php81-tokenizer \
         php81-xdebug \
         php81-xsl \
