@@ -5,6 +5,10 @@ MAINTAINER Christian Gripp <mail@core23.de>
 # Switch to install mode
 USER root
 
+# cmd tools
+RUN apk update && apk upgrade && apk add --update alpine-sdk && \
+    apk add --no-cache make cmake
+
 # NPM
 RUN apk add --no-cache nodejs npm \
     && npm install -g yarn --unsafe-perm
