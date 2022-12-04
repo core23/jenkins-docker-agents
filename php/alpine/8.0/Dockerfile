@@ -51,8 +51,6 @@ RUN apk add --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/testing \
         php8-zip \
         php8-zlib
 
-RUN ln -s /usr/bin/php8 /usr/bin/php
-
 COPY php.ini /etc/php8/conf.d/custom.ini
 
 # Get Composer
