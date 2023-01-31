@@ -59,7 +59,7 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: "Build and push"
-        uses: "docker/build-push-action@v3"
+        uses: "docker/build-push-action@v4"
         with:
           context: "php/${{ matrix.base-image }}/${{ matrix.php-version }}"
           platforms: "linux/amd64"
