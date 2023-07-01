@@ -11,7 +11,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     gnupg2 curl git ant wget
 
 # NPM tools
-RUN curl -sL https://deb.nodesource.com/setup_14.x | bash - \
+RUN curl -sL https://deb.nodesource.com/setup_20.x | bash - \
     && apt-get install -y nodejs \
     && npm install -g yarn --unsafe-perm
 
