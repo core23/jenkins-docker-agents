@@ -17,6 +17,7 @@ RUN apk add --no-cache nodejs npm \
 RUN apk add --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/testing \
         php82 \
         php82-bcmath \
+        php82-cli \
         php82-ctype \
         php82-curl \
         php82-dom \
