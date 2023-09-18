@@ -55,6 +55,8 @@ RUN apk add --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/testing \
         php82-zip \
         php82-zlib
 
+RUN ln -sf /usr/bin/php82 /usr/bin/php
+
 COPY php.ini /etc/php82/conf.d/custom.ini
 
 # Get Composer
