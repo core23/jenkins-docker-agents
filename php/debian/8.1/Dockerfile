@@ -7,8 +7,18 @@ USER root
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     apt-transport-https \
-    apt-utils sendmail libpng-dev zlib1g-dev \
-    gnupg2 curl git ant wget
+    apt-utils \
+    sendmail \
+    libpng-dev \
+    zlib1g-dev \
+    libssl-dev \
+    libtiff-tools \
+    libwebp-dev \
+    gnupg2 \
+    curl \
+    git \
+    ant \
+    wget
 
 # NPM tools
 RUN apt-get install -y nodejs npm && \
@@ -18,8 +28,13 @@ RUN wget -q https://packages.sury.org/php/apt.gpg -O- | apt-key add - \
     && echo "deb https://packages.sury.org/php/ buster main" | tee /etc/apt/sources.list.d/php.list
 
 # install php extensions
-RUN wget "http://ftp.de.debian.org/debian/pool/main/libf/libffi/libffi6_3.2.1-9_$(dpkg --print-architecture).deb" && \
-    dpkg -i "libffi6_3.2.1-9_$(dpkg --print-architecture).deb"
+RUN wget "http://ftp.de.debian.org/debian/pool/main/libf/libffi/libffi6_3.2.1-9_$(dpkg --print-architecture).deb" \
+    && dpkg -i "libffi6_3.2.1-9_$(dpkg --print-architecture).deb"
+
+# debian workarounds until official support
+RUN wget "http://archive.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.1f-1ubuntu2_$(dpkg --print-architecture).deb" \
+    && dpkg -i "libssl1.1_1.1.1f-1ubuntu2_$(dpkg --print-architecture).deb" \
+    && apt-get -y install libtiff5-dev libwebp-dev
 
 RUN apt-get update && \
     apt-get install -y \
