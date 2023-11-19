@@ -20,7 +20,6 @@ jobs:
 
         base-image:
           - "alpine"
-          - "debian"
 
     steps:
       - name: "Checkout"
@@ -37,7 +36,6 @@ jobs:
             ghcr.io/core23/jenkins-php-agent
           tags: |
             type=raw,value=${{ matrix.php-version }}-${{ matrix.base-image }}
-            type=raw,value=${{ matrix.php-version }},enable=${{ startsWith(matrix.base-image, 'debian') }}
 
       - name: "Setup QEMU"
         uses: "docker/setup-qemu-action@v3"
