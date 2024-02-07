@@ -35,3 +35,6 @@ jobs:
 
       - name: "Size"
         run: "docker images ghcr.io/core23/jenkins-php-agent:${{ matrix.php-version }}-${{ matrix.base-image }} --format \"{{.Repository}}:{{.Tag}} -> {{.Size}}\""
+
+      - name: "Version"
+        run: "docker run --rm --entrypoint=php ghcr.io/core23/jenkins-php-agent:${{ matrix.php-version }}-${{ matrix.base-image }} --version"
