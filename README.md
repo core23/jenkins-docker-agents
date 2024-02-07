@@ -1,7 +1,7 @@
 Jenkins Agents
 ==============
 
-[![Continuous Integration](https://github.com/core23/jenkins-docker-agents/workflows/Continuous%20Integration/badge.svg)](https://github.com/core23/jenkins-docker-agents/actions)
+[![Continuous Integration](https://github.com/core23/jenkins-docker-agents/actions/workflows/continuous-integration.yml/badge.svg)](https://github.com/core23/jenkins-docker-agents/actions/workflows/continuous-integration.yml)
 
 PHP Agents
 ----------
