@@ -14,7 +14,7 @@ RUN apk add --no-cache nodejs npm \
     && npm install -g yarn --unsafe-perm
 
 # PHP
-RUN apk add --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/community \
+RUN apk add --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/testing \
         php83 \
         php83-bcmath \
         php83-cli \
