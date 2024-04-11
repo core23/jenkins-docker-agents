@@ -37,6 +37,7 @@ RUN apk add --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/testing \
         php83-pdo_sqlite \
         php83-pecl-imagick \
         php83-pecl-mongodb \
+        php83-pecl-pcov \
         php83-pecl-redis \
         php83-phar \
         php83-posix \
