@@ -7,7 +7,7 @@ USER root
 
 # cmd tools
 RUN apk update && apk upgrade && apk add --update alpine-sdk && \
-    apk add --no-cache make cmake
+    apk add --no-cache make cmake gpg gpg-agent
 
 # NPM
 RUN apk add --no-cache nodejs npm \
@@ -61,6 +61,15 @@ COPY php.ini /etc/php82/conf.d/custom.ini
 
 # Get Composer
 COPY --from=composer /usr/bin/composer /usr/local/bin/composer
+
+# Get phive
+RUN wget -O phive.phar "https://phar.io/releases/phive.phar" && \
+    wget -O phive.phar.asc "https://phar.io/releases/phive.phar.asc" && \
+    gpg --keyserver hkps://keys.openpgp.org --recv-keys 0x6AF725270AB81E04D79442549D8A98B29B2D5D79 && \
+    gpg --verify phive.phar.asc phive.phar && \
+    rm phive.phar.asc && \
+    chmod +x phive.phar && \
+    mv phive.phar /usr/local/bin/phive
 
 USER jenkins
 
