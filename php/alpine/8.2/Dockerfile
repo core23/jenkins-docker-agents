@@ -11,7 +11,7 @@ RUN apk update && apk upgrade && apk add --update alpine-sdk && \
 
 # NPM
 RUN apk add --no-cache nodejs npm \
-    && npm install -g yarn --unsafe-perm
+    && npm install -g yarn pnpm --unsafe-perm
 
 # PHP
 RUN apk add --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/testing \
