@@ -1,0 +1,84 @@
+FROM php:8.3
+
+LABEL org.opencontainers.image.authors="mail@core23.de"
+
+# Extensions
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    apt-transport-https \
+    apt-utils sendmail \
+    libfreetype6-dev \
+    libjpeg62-turbo-dev \
+    libpng-dev \
+    libonig-dev \
+    libxml2-dev \
+    libzip-dev \
+    libicu-dev \
+    libmagickwand-dev \
+    unzip \
+    gnupg2 \
+    curl \
+    git \
+    ant \
+    wget \
+    && docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install \
+        bcmath \
+        gd \
+        intl \
+        mysqli \
+        soap \
+        zip \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY php.ini /etc/php84/conf.d/custom.ini
+
+# NPM, PNPN, YARN
+RUN wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash \
+    && \. "$HOME/.nvm/nvm.sh" \
+    && nvm install 22 \
+    && corepack enable pnpm \
+    && corepack enable yarn
+
+# PIE
+COPY --from=ghcr.io/php/pie:bin /pie /usr/bin/pie
+
+RUN pie install pecl/pcov \
+    && pie install mongodb/mongodb-extension \
+    && pie install imagick/imagick \
+    && pie install xdebug/xdebug
+
+# Composer
+COPY --from=composer /usr/bin/composer /usr/local/bin/composer
+
+# Get phive
+RUN wget -O phive.phar "https://phar.io/releases/phive.phar" && \
+    wget -O phive.phar.asc "https://phar.io/releases/phive.phar.asc" && \
+    gpg --keyserver hkps://keys.openpgp.org --recv-keys 0x6AF725270AB81E04D79442549D8A98B29B2D5D79 && \
+    gpg --verify phive.phar.asc phive.phar && \
+    rm phive.phar.asc && \
+    chmod +x phive.phar && \
+    mv phive.phar /usr/local/bin/phive
+
+# Define the Jenkins agent home directory
+ENV JENKINS_AGENT_HOME=/home/jenkins/agent
+
+# Install Java and curl
+RUN apt-get update && apt-get install -y \
+    openjdk-17-jre-headless \
+    curl \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+# Create the Jenkins user
+RUN useradd -m -d /home/jenkins -s /bin/bash jenkins
+USER jenkins
+WORKDIR $JENKINS_AGENT_HOME
+
+# Download the JNLP agent launcher (JAR file)
+ARG JENKINS_REMOTING_VERSION=3309.v27b_9314fd1a_4
+
+RUN curl -o agent.jar https://repo.jenkins-ci.org/public/org/jenkins-ci/main/remoting/${JENKINS_REMOTING_VERSION}/remoting-${JENKINS_REMOTING_VERSION}.jar
+
+# Run the agent when the container starts
+ENTRYPOINT ["java", "-jar", "agent.jar"]
