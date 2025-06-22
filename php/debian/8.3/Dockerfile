@@ -13,6 +13,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libxml2-dev \
     libzip-dev \
     libicu-dev \
+    libxslt-dev \
     libmagickwand-dev \
     unzip \
     gnupg2 \
@@ -29,6 +30,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         mysqli \
         soap \
         zip \
+        xsl \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
