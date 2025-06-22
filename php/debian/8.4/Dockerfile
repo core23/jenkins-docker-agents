@@ -40,8 +40,9 @@ COPY php.ini /etc/php84/conf.d/custom.ini
 RUN wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash \
     && \. "$HOME/.nvm/nvm.sh" \
     && nvm install 22 \
-    && corepack enable pnpm \
-    && corepack enable yarn
+    && corepack enable \
+    && corepack prepare pnpm@latest --activate \
+    && corepack prepare yarn@stable --activate
 
 # PIE
 COPY --from=ghcr.io/php/pie:bin /pie /usr/bin/pie
