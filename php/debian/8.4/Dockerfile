@@ -37,12 +37,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 COPY php.ini /etc/php84/conf.d/custom.ini
 
 # NPM, PNPN, YARN
-RUN wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash \
-    && \. "$HOME/.nvm/nvm.sh" \
-    && nvm install 22 \
-    && corepack enable \
-    && corepack prepare pnpm@latest --activate \
-    && corepack prepare yarn@stable --activate
+RUN curl -fsSL https://deb.nodesource.com/setup_22.x | bash - \
+    && apt-get update && apt-get install -y nodejs \
+    && npm install -g --unsafe-perm yarn pnpm \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
 # PIE
 COPY --from=ghcr.io/php/pie:bin /pie /usr/bin/pie
