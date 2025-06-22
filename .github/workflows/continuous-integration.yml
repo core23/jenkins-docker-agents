@@ -23,6 +23,7 @@ jobs:
 
         base-image:
           - "alpine"
+          - "debian"
 
     steps:
       - name: "Checkout"
