@@ -19,6 +19,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     curl \
     git \
     ant \
+    openssh-client \
     wget \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install \
