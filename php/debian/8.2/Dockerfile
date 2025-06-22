@@ -78,7 +78,7 @@ WORKDIR $JENKINS_AGENT_HOME
 # Download the JNLP agent launcher (JAR file)
 ARG JENKINS_REMOTING_VERSION=3309.v27b_9314fd1a_4
 
-RUN curl -o agent.jar https://repo.jenkins-ci.org/public/org/jenkins-ci/main/remoting/${JENKINS_REMOTING_VERSION}/remoting-${JENKINS_REMOTING_VERSION}.jar
+RUN curl -Lo agent.jar https://repo.jenkins-ci.org/public/org/jenkins-ci/main/remoting/${JENKINS_REMOTING_VERSION}/remoting-${JENKINS_REMOTING_VERSION}.jar
 
 # Run the agent when the container starts
 ENTRYPOINT ["java", "-jar", "agent.jar"]
