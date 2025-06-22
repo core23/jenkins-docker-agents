@@ -34,7 +34,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-COPY php.ini /etc/php84/conf.d/custom.ini
+COPY custom.ini /usr/local/etc/php/conf.d/custom.ini
 
 # NPM, PNPN, YARN
 RUN curl -fsSL https://deb.nodesource.com/setup_22.x | bash - \
