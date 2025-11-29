@@ -68,7 +68,7 @@ ENV JENKINS_AGENT_HOME=/home/jenkins/agent
 
 # Install Java and curl
 RUN apt-get update && apt-get install -y \
-    openjdk-17-jre-headless \
+    openjdk-21-jre-headless \
     curl \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
