@@ -42,7 +42,7 @@ jobs:
             type=raw,value=${{ matrix.php-version }},enable=${{ startsWith(matrix.base-image, 'alpine') }}
 
       - name: "Setup QEMU"
-        uses: "docker/setup-qemu-action@v3"
+        uses: "docker/setup-qemu-action@v4"
 
       - name: "Setup Docker Buildx"
         uses: "docker/setup-buildx-action@v3"
