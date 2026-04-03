@@ -1,6 +1,6 @@
 FROM jenkins/inbound-agent:alpine
 
-MAINTAINER Christian Gripp <mail@core23.de>
+LABEL org.opencontainers.image.authors="Christian Gripp <mail@core23.de>"
 
 # Switch to install mode
 USER root
