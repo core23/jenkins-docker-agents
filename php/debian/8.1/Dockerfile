@@ -36,7 +36,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 COPY custom.ini /usr/local/etc/php/conf.d/custom.ini
 
-# NPM, PNPN, YARN
+# NPM, PNPM, YARN
 RUN curl -fsSL https://deb.nodesource.com/setup_22.x | bash - \
     && apt-get update && apt-get install -y nodejs \
     && npm install -g --unsafe-perm yarn pnpm \
