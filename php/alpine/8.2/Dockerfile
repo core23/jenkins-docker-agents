@@ -1,6 +1,6 @@
 FROM jenkins/inbound-agent:alpine
 
-MAINTAINER Christian Gripp <mail@core23.de>
+LABEL org.opencontainers.image.authors="Christian Gripp <mail@core23.de>"
 
 # Switch to install mode
 USER root
@@ -14,7 +14,10 @@ RUN apk add --no-cache nodejs npm \
     && npm install -g --unsafe-perm yarn pnpm
 
 # PHP
-RUN apk add --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/testing \
+RUN apk add --no-cache \
+        -X https://dl-cdn.alpinelinux.org/alpine/edge/main \
+        -X https://dl-cdn.alpinelinux.org/alpine/edge/community \
+        -X https://dl-cdn.alpinelinux.org/alpine/edge/testing \
         php82 \
         php82-bcmath \
         php82-cli \
